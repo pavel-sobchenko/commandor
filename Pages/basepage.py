@@ -1,4 +1,5 @@
 from abc import abstractmethod
+from selenium import webdriver
 
 
 class BasePage(object):
@@ -9,6 +10,9 @@ class BasePage(object):
 
     @abstractmethod
     def _validate_page(self, driver):
+        return
+
+    def get_title(self, driver):
         return
 
     """ Regions define functionality available throughall page objects """

@@ -1,8 +1,8 @@
-from Pages import BasePage
-from Pages.BasePage import InvalidPageException
+from Pages import basepage
+from Pages.basepage import InvalidPageException
 from Pages import ResultPage
 
-class SearchRegion(BasePage):
+class SearchRegion(basepage):
     _search_button_locator = "//a[@title='Search']"
     _search_box_locator = "edit-keys"
     def __init__(self, driver):
@@ -18,7 +18,7 @@ class SearchRegion(BasePage):
         return SearchResults(self.driver)
 
 
-class SearchResults(BasePage):
+class SearchResults(basepage):
     _product_list_locator = "ul.search-results > li"
     _product_name_locator = "div.result-title a"
     _product_image_link = "div.result-url a"

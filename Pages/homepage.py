@@ -1,14 +1,17 @@
 from Pages import ResultPage
-from Pages.BasePage import  InvalidPageException
+from Pages.basepage import BasePage
+from Pages.basepage import InvalidPageException
 
-class HomePage(object):
+
+class HomePage(BasePage):
+    _home_page_locator = ""
     def __init__(self, driver):
         #self.driver = driver
         super(HomePage, self).__init__(driver)
 
     def _validate_page(self, driver):
         try:
-            driver.find_element_by_class_name(self._home_page_slideshow_locator)
+            driver.find_element_by_class_name(self._home_page_locator)
         except:
             raise InvalidPageException("Home Page not loaded")
 

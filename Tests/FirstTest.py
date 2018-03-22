@@ -1,14 +1,18 @@
 import unittest
 from selenium import webdriver
-from Pages import HomePage
+from Pages.homepage import HomePage
+from Tests.BaseTest import BaseTest
 
 
-class MyTestCase(unittest.TestCase):
+class MyTestCase(BaseTest):
     def test_search(self):
         home = HomePage(self.driver)
-        result = home.search("automated testing infro")
-        assert "automated" in result.first_link
-        self.assertEqual("$0.00", "")
+        self.assertTrue(home.page_is_loaded())
+        home.select_video_from_dropdown()
+        home.set_exact_flag(false)
+        home.type_search_request("milf")
+        result_page = home.click_submit()
+        self.assertTrue(result_page.display_movies("milf"))
 
 
 if __name__ == '__main__':

@@ -7,9 +7,9 @@ class BaseTest(unittest.TestCase):
         # create a new Chrome session
         self.driver = webdriver.Chrome()
         self.driver.implicitly_wait(30)
-        self.driver.maximize_window()
+        #self.driver.maximize_window()
         # navigate to the application home page
-        self.driver.get("http://demo.magentocommerce.com/")
+        self.driver.get("http://roverv5.tubecj.com/")
 
     def tearDown(self):
         # close the browser window
