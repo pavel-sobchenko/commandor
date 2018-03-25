@@ -12,8 +12,8 @@ class BasePage(object):
     def _validate_page(self, driver):
         return
 
-    def get_title(self, driver):
-        return
+    def get_title(self):
+        return self.driver.title
 
     """ Regions define functionality available throughall page objects """
     @property
