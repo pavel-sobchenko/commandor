@@ -1,10 +1,11 @@
 from Pages import basepage
 from Pages.basepage import InvalidPageException
 from Pages import ResultPage
+from Locators import search_block_locators
+from Pages.PageElements.base_page_element import BasePageElement
 
-class SearchRegion(basepage):
-    _search_button_locator = "//a[@title='Search']"
-    _search_box_locator = "edit-keys"
+
+class SearchRegion(BasePageElement):
     def __init__(self, driver):
         super(SearchRegion, self).__init__(driver)
 
