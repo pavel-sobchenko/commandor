@@ -1,4 +1,4 @@
-from Pages import ResultPage
+from Pages import resultpage
 from Pages.basepage import BasePage
 from Pages.basepage import InvalidPageException
 
@@ -23,5 +23,5 @@ class HomePage(BasePage):
 
     def search(self, param):
         self.driver.find_element_by_id("gbqfa").send_keys(param)
-        return ResultPage(self.driver)
+        return resultpage(self.driver)
 
