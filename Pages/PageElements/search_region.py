@@ -1,7 +1,7 @@
 from Pages import basepage
-from Pages.basepage import InvalidPageException
-from Pages import resultpage
-from Locators import search_block_locators
+#from Pages.basepage import InvalidPageException
+#from Pages import resultpage
+#from Locators import search_block_locators
 from Pages.PageElements.base_page_element import BasePageElement
 
 
@@ -9,7 +9,7 @@ class SearchRegion(BasePageElement):
     def __init__(self, driver):
         super(SearchRegion, self).__init__(driver)
 
-    def searchFor(self, term):
+    def searchForVideo(self, term, exact):
         pass
         #self.search_button = self.driver.find_element_by_xpath(self._search_button_locator)
         #self.search_button.click()
@@ -18,3 +18,6 @@ class SearchRegion(BasePageElement):
         #self.search_field.send_keys(term)
         #self.search_field.submit()
         #return SearchResults(self.driver)
+
+    def is_element_visible(self, driver):
+        return self.get_search_button().is_displayed()
