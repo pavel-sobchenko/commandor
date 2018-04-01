@@ -5,9 +5,9 @@ from Pages.PageElements.search_region import SearchRegion
 
 class BasePage(object):
 
-    _search_region = SearchRegion()
     """ All page objects inherit from this """
     def __init__(self, driver):
+        self._search_region = SearchRegion(driver)
         self._validate_page(driver)
         self.driver = driver
 

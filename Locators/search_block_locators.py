@@ -2,6 +2,10 @@ from selenium.webdriver.common.by import By
 
 
 class SearchBlockLocator(object):
+
+    def __init__(self, driver):
+        self.driver = driver
+
     _search_block_class_locator = "Search"
     _search_class_button_locator = "pt-search"
     _close_class_button_locator = "pt-close"
@@ -17,6 +21,9 @@ class SearchBlockLocator(object):
     EXACT_MATCH_CHBOX = (By.CLASS_NAME, _exact_match_checkbox_class_locator)
     SEARCH_ACTION_BUTTON = (By.CLASS_NAME, _search_action_class_button)
     SEARCH_INPUT = (By.CLASS_NAME, _search_input_class_edit)
+
+    def get_search_block(self):
+        return self.SEARCH_BLOCK
 
     def get_search_button(self):
         return self.SEARCH_BUTTON

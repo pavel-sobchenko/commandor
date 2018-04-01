@@ -1,7 +1,7 @@
 from Pages import basepage
 #from Pages.basepage import InvalidPageException
 #from Pages import resultpage
-#from Locators import search_block_locators
+from Locators.search_block_locators import SearchBlockLocator
 from Pages.PageElements.base_page_element import BasePageElement
 
 
@@ -20,4 +20,4 @@ class SearchRegion(BasePageElement):
         #return SearchResults(self.driver)
 
     def is_element_visible(self, driver):
-        return self.get_search_button().is_displayed()
+        pass
