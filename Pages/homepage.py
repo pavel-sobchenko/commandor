@@ -1,5 +1,6 @@
 # from Pages import resultpage
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import Select
 
 from Pages.basepage import BasePage, InvalidPageException
 from Locators.search_block_locators import SearchBlockLocator
@@ -10,8 +11,10 @@ class HomePage(BasePage):
     def __init__(self, driver):
         self._search_block_class_locator = "Search"
         self._title_name = "Free porn"
+        self._search_class_button_locator = "pt-search"
+
         super(HomePage, self).__init__(driver)
-        #self._search_block_locator = SearchBlockLocator(driver)
+        # self._search_block_locator = SearchBlockLocator(driver)
         # self.driver = driver
 
     def _validate_page(self, driver):
@@ -26,6 +29,11 @@ class HomePage(BasePage):
                and self._title_name in  self.get_title()
         # return self.driver.find_element_by_class_name(self._home_page_locator).is_displayed() \
         # and self._title_name in  self.get_title()
+
+    def select_video_from_dropdown(self):
+        self.driver.find_element(By.CLASS_NAME, self._search_class_button_locator).click()
+        self.driver.find_element_by_class("Search__select").click()
+
 
     def search(self, param):
         pass
