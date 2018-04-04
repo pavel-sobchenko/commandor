@@ -10,7 +10,7 @@ class MyTestCase(BaseTest):
         # self.assertTrue(home.is_page_loaded())
         assert home.is_page_loaded() is True
         home.select_video_from_dropdown()
-        #home.set_exact_flag(false)
+        home.set_exact_flag("false")
         #home.type_search_request("milf")
         #result_page = home.click_submit()
         #self.assertTrue(result_page.display_movies("milf"))

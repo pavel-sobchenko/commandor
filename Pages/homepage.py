@@ -1,6 +1,7 @@
 # from Pages import resultpage
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
+from selenium.webdriver.support.wait import WebDriverWait
 
 from Pages.basepage import BasePage, InvalidPageException
 from Locators.search_block_locators import SearchBlockLocator
@@ -12,6 +13,9 @@ class HomePage(BasePage):
         self._search_block_class_locator = "Search"
         self._title_name = "Free porn"
         self._search_class_button_locator = "pt-search"
+        self._search_select = "//div[@class='Search__select']"
+        self._options = self._search_select + "/ul/li/a/span"
+        self._exact_checkbox_locator = ".checkbox"
 
         super(HomePage, self).__init__(driver)
         # self._search_block_locator = SearchBlockLocator(driver)
@@ -31,9 +35,19 @@ class HomePage(BasePage):
         # and self._title_name in  self.get_title()
 
     def select_video_from_dropdown(self):
+        WebDriverWait(self.driver, 100).until(
+            lambda driver: driver.find_element(By.CLASS_NAME, self._search_class_button_locator).is_displayed())
         self.driver.find_element(By.CLASS_NAME, self._search_class_button_locator).click()
-        self.driver.find_element_by_class("Search__select").click()
+        WebDriverWait(self.driver, 100).until(lambda driver: driver.find_element(By.XPATH, self._search_select).is_displayed())
+        self.driver.find_element(By.XPATH, self._search_select).click()
+        for element in self.driver.find_elements(By.XPATH, self._options):
+            if element.get_attribute("innerHTML") == "Video":
+                element.click()
+                break
 
+    def set_exact_flag(self, value):
+        if self.driver.find_element(By.CSS_SELECTOR, self._exact_checkbox_locator).get_attribute("checked") != value:
+            self.driver.find_element(By.CSS_SELECTOR, self._exact_checkbox_locator).click()
 
     def search(self, param):
         pass
