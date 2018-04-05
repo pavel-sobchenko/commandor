@@ -1,6 +1,4 @@
-# from Pages import resultpage
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.wait import WebDriverWait
 
 from Pages.basepage import BasePage, InvalidPageException
@@ -16,6 +14,8 @@ class HomePage(BasePage):
         self._search_select = "//div[@class='Search__select']"
         self._options = self._search_select + "/ul/li/a/span"
         self._exact_checkbox_locator = ".checkbox"
+        self._search_input_class_edit = ".Search__input"
+        self._search_action_class_button = "Search__btn"
 
         super(HomePage, self).__init__(driver)
         # self._search_block_locator = SearchBlockLocator(driver)
@@ -23,7 +23,6 @@ class HomePage(BasePage):
 
     def _validate_page(self, driver):
         try:
-            #driver.find_element_by_class_name(self.get_search_region().is_element_visible())
             driver.find_element(By.CLASS_NAME, self._search_block_class_locator).is_displayed()
         except:
             raise InvalidPageException("Home Page not loaded")
@@ -49,7 +48,13 @@ class HomePage(BasePage):
         if self.driver.find_element(By.CSS_SELECTOR, self._exact_checkbox_locator).get_attribute("checked") != value:
             self.driver.find_element(By.CSS_SELECTOR, self._exact_checkbox_locator).click()
 
-    def search(self, param):
-        pass
-        # self.driver.find_element_by_id("gbqfa").send_keys(param)
+    def type_search_request(self, param):
+        WebDriverWait(self.driver, 100).until(
+            lambda driver: driver.find_element(By.CSS_SELECTOR, self._search_input_class_edit).is_displayed())
+        self.driver.find_element(By.CSS_SELECTOR, self._search_input_class_edit).click()
+        self.driver.find_element(By.CSS_SELECTOR, self._search_input_class_edit).send_keys(param)
         # return resultpage(self.driver)
+
+    def click_submit(self):
+        self.driver.find_element(By.CLASS_NAME, self._search_class_button_locator).click()
+

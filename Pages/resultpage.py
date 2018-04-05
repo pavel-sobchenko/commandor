@@ -1,8 +1,7 @@
-from Pages import basepage
-from Pages.basepage import InvalidPageException
+from Pages.basepage import InvalidPageException, BasePage
 
 
-class ResultPage(basepage):
+class ResultPage(BasePage):
     _product_list_locator = "ul.search-results > li"
     _product_name_locator = "div.result-title a"
     _product_image_link = "div.result-url a"
@@ -12,16 +11,16 @@ class ResultPage(basepage):
 
     def __init__(self, driver):
         super(ResultPage, self).__init__(driver)
-        results = self.driver.find_elements_by_css_selector(self._product_list_locator)
-        for product in results:
-            name = product.find_element_by_css_selector(self._product_name_locator).text
-            self._products[name] = product.find_element_by_css_selector(self._product_image_link)
+        #results = self.driver.find_elements_by_css_selector(self._product_list_locator)
+        #for product in results:
+        #    name = product.find_element_by_css_selector(self._product_name_locator).text
+        #    self._products[name] = product.find_element_by_css_selector(self._product_image_link)
 
     def _validate_page(self, driver):
         if 'Search' not in driver.title:
             raise InvalidPageException('Search results not loaded')
 
-    @property
+    """@property
     def product_count(self):
         return len(self._products)
 
@@ -30,4 +29,4 @@ class ResultPage(basepage):
 
     def open_product_page(self, product_name):
         self._products[product_name].click()
-        return ResultPage(self.driver)
+        return ResultPage(self.driver)"""
